@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\TarefaRepository;
 use App\Repositories\TarefaRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -14,24 +13,42 @@ class TarefaController extends Controller
     }
 
     public function listar(){
-
-        $listar=$this->tarefaRepository->listar();
-		return $listar;
+        try {
+            return $this->tarefaRepository->listar();
+        }catch (\Exception $e){
+            return Log::error('Log Error.', $e);
+        }
 	}
 
     public function adicionar(Request $request,$id){
-    	return $this->tarefaRepository->adicionar($request,$id);
+        try {
+            return $this->tarefaRepository->adicionar($request, $id);
+        }catch (\Exception $e){
+            return Log::error('Log Error.', $e);
+        }
     }
 
     public function filtrar($id){
-        return $this->tarefaRepository->filtro($id);
+        try {
+            return $this->tarefaRepository->filtro($id);
+        }catch (\Exception $e){
+            return Log::error('Log Error.', $e);
+        }
     }
 
     public function atualizar(Request $request,$id){
-        return $this->tarefaRepository->atualizar($request,$id);
+        try {
+            return $this->tarefaRepository->atualizar($request, $id);
+        }catch (\Exception $e){
+            return Log::error('Log Error.', $e);
+        }
     }
 
     public function finalizar(Request $request,$id){
-        return $this->tarefaRepository->finalizarTarefa($request,$id);
+        try {
+            return $this->tarefaRepository->finalizarTarefa($request, $id);
+        }catch (\Exception $e){
+            return Log::error('Log Error.', $e);
+        }
     }
 }
