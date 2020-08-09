@@ -8,9 +8,11 @@ class Tarefa extends Model
 {
     protected $table="tarefas";
 
-    public $timestamps=false;
-
     protected $guarded=[];
+
+    public function horarios(){
+        return $this->hasMany(Horario::class,'tarefa_id','id');
+    }
 
     //protected $fillable=['titulo','conteudo','categoria_id','status'];
 

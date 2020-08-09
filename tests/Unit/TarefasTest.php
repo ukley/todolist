@@ -7,7 +7,7 @@ use App\Repositories\TarefaRepository;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ListarTarefasTest extends TestCase
+class TarefasTest extends TestCase
 {
 
     /** @test */
@@ -38,14 +38,16 @@ class ListarTarefasTest extends TestCase
 
     /** @test */
     function testAtualizarTarefaTest() {
-        $response = $this->put('/tarefas/atualizar/1', [
-            'titulo' => 'Lorem Ipsum',
-            'conteudo' => 'Lorem Ipsum ',
-            'categoria_id' => 1,
-            'status' => 'A'
-        ]);
-        $response->assertOk();
+        $data = [
+            'conteudo' => 'Lorem Ipsum',
+            'status'=>'I',
+            'categoria_id'=>2
+        ];
 
+        $tarefaRepo = new TarefaRepository();
+        $update = $tarefaRepo->atualizar($data,1);
+
+        $this->assertTrue($update);
     }
 
 

@@ -11,17 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','TarefaController@listar');
 
 
 Route::prefix('tarefas')->group(function(){
-    Route::post('adicionar/{idCategoria}','TarefaController@adicionar')->name('adicionar-tarefa');
+    Route::get('adicionar','TarefaController@index')->name('adicionar');
+    Route::post('adicionar','TarefaController@adicionar')->name('adicionar-tarefa');
     Route::get('listar','TarefaController@listar')->name('filtro');
-    Route::post('atualizar/{idCategoria}','TarefaController@atualizar')->name('completar-tarefa');
-    Route::post('finalizar/{id}','TarefaController@finalizar')->name('limpar-tarefa');
-    Route::get('filtrar/{id}','TarefaController@filtrar')->name('filtro');
+    Route::put('atualizar/{idTarefa}','TarefaController@atualizar')->name('completar-tarefa');
+    Route::get('update/{idTarefa}','TarefaController@update')->name('update');
+    Route::get('finalizar/{id}','TarefaController@finalizar')->name('limpar-tarefa');
+    Route::get('filtrar','TarefaController@filtrar')->name('filtro');
+    Route::get('visualizar/{id}','TarefaController@visualizar')->name('ver');
+
 });
 
 
