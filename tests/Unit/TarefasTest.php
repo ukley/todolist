@@ -21,15 +21,33 @@ class ListarTarefasTest extends TestCase
     /** @test */
     public function adicionar_uma_tarefaTest()
     {
-        $response = $this->post('/tarefas/adicionar/3', [
+        $response = $this->post('/tarefas/adicionar', [
             'titulo' => 'Lorem Ipsum',
             'conteudo' => 'Lorem Ipsum ',
             'categoria_id' => 1,
             'status' => 'A'
         ]);
-
         $response->assertOk();
-        $this->assertCount(23,Tarefa::all());
     }
+
+    /** @test */
+    public function testIndex(){
+        $response=$this->get('/tarefas/listar')
+        ->assertStatus(200);
+    }
+
+    /** @test */
+    function testAtualizarTarefaTest() {
+        $response = $this->put('/tarefas/atualizar/1', [
+            'titulo' => 'Lorem Ipsum',
+            'conteudo' => 'Lorem Ipsum ',
+            'categoria_id' => 1,
+            'status' => 'A'
+        ]);
+        $response->assertOk();
+
+    }
+
+
 
 }
