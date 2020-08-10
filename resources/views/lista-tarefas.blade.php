@@ -69,7 +69,7 @@ date_default_timezone_set('America/Sao_Paulo');
     @foreach($lista as $item)
             <tbody>
             <tr>
-                <td class="center-align">{{$item->titulo}}</td>
+                <td class="center-align">{{strtoupper($item->titulo)}}</td>
                 <td class="center-align">{{utf8_encode(ucfirst(strftime('%A, %d de %B ', strtotime($item->dataEvento))))}}</td>
                 <td class="center-align">{{$item->inicial}}</td>
                 <td class="center-align">{{$item->final}}</td>
