@@ -14,7 +14,7 @@ class Tarefa extends Model
         return $this->hasMany(Horario::class,'tarefa_id','id');
     }
 
-    //protected $fillable=['titulo','conteudo','categoria_id','status'];
+    protected $fillable=['titulo','conteudo','categoria_id','status'];
 
 
 }
