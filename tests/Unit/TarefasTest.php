@@ -36,18 +36,24 @@ class TarefasTest extends TestCase
         ->assertStatus(200);
     }
 
+
     /** @test */
     function testAtualizarTarefaTest() {
+
         $data = [
+            'titulo'=>'Teste update',
             'conteudo' => 'Lorem Ipsum',
-            'status'=>'I',
+            'status'=>'i',
             'categoria_id'=>2
         ];
 
-        $tarefaRepo = new TarefaRepository();
-        $update = $tarefaRepo->atualizar($data,1);
+        $this->put(route('completar-tarefa', 1), $data)
+            ->assertStatus(200);
+    }
 
-        $this->assertTrue($update);
+    public function testRetornoTest(){
+        $response=$this->get('/tarefas/update/1')
+            ->assertStatus(200);
     }
 
 
